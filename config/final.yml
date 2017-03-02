@@ -1,5 +1,5 @@
 ---
-final_name: etcd2
+final_name: etcd
 blobstore:
   provider: s3
   options:
