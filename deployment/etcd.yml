@@ -3,7 +3,7 @@ name: etcd
 instance_groups:
 - name: etcd
   azs: [z1, z2, z3]
-  instances: 1
+  instances: 3
   persistent_disk_type: default
   vm_type: default
   stemcell: default
