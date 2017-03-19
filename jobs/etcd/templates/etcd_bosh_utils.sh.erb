@@ -58,9 +58,16 @@ DATA_DIR=${STORE_DIR}/etcd
       cluster_url = "#{client_protocol}://#{p("etcd.advertise_urls_dns_suffix")}:4001"
       return cluster_url
     else
-      my_ip = discover_external_ip
-      cluster_member_ips = p("etcd.machines").map { |m| "http://#{m}:4001" }.join(" ")
-      return cluster_member_ips
+      cluster_member_urls
+    end
+  end
+
+  def cluster_member_urls
+    cluster_member_urls = if_p("etcd.machines") do |machines|
+      machines.map { |m| "http://#{m}:4001" }.join(" ")
+    end
+    cluster_member_urls ||= if_link("etcd") do |peers|
+      peers.instances.map { |i| "http://#{i.address}:4001" }.join(" ")
     end
   end
 
@@ -75,9 +82,7 @@ DATA_DIR=${STORE_DIR}/etcd
       end.flatten.join(",")
       return cluster_member_urls
     else
-      my_ip = discover_external_ip
-      cluster_member_ips = p("etcd.machines").map { |m| "http://#{m}:4001" }.join(",")
-      return cluster_member_ips
+      cluster_member_urls
     end
   end
 %>
