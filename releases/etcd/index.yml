@@ -2,4 +2,6 @@
 builds:
   dfb4332a-94f0-40b6-9c26-39b0618c86c6:
     version: '95.1'
+  ed245613-c186-43a0-9a00-b1451ac92c51:
+    version: '95.2'
 format-version: '2'
