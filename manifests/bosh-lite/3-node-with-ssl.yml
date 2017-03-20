@@ -157,7 +157,9 @@ instance_groups:
           BKcJHlf9kYxFaLL17iOq9rY0+LURr63BkRa2uyn489luxcHnTjk=
           -----END RSA PRIVATE KEY-----
     provides:
-      consul: {as: consul_server}
+      consul:
+        as: consul_server
+        shared: true
     consumes:
       consul: {from: consul_server}
 

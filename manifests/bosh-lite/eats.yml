@@ -22,18 +22,15 @@ stemcells:
 
 instance_groups:
 - name: acceptance-tests
-  instances: 1
   lifecycle: errand
   azs: [z1]
+  instances: 1
   vm_type: default
   stemcell: default
+  networks: [{name: private}]
   jobs:
   - name: acceptance-tests
     release: etcd
-    consumes:
-      consul:
-        from: consul_server
-        deployment: etcd
 
 properties:
   etcd:
@@ -42,12 +39,10 @@ properties:
         target: ((bosh_target))
         username: ((bosh_username))
         password: ((bosh_password))
-        director_ca_cert: ((bosh_ca_cert))
+        director_ca_cert: ((bosh_director_ca_cert))
       registry:
         username: ((bosh_registry_username))
         password: ((bosh_registry_password))
-        host: ((bosh_registry_host))
-        port: 25777
       parallel_nodes: 1
       etcd_release_version: latest
 
