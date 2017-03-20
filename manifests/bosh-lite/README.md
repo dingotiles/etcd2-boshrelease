@@ -38,3 +38,17 @@ etcd/02b9bbee-d165-4467-b39d-1b2c3a552726    running        z1  10.244.128.2
 etcd/35effa1a-834f-42ab-bed2-f01890b05e00    running        z3  10.244.128.4
 etcd/54825aef-bd63-4ba2-84ff-3fc0586da45f    running        z2  10.244.128.3
 ```
+
+### Run acceptance tests
+
+Acceptance tests for this release are runnable as a separate deployment called `eats`:
+
+```
+bosh2 -d eats deploy manifests/bosh-lite/eats.yml --var-errs
+```
+
+Your deployment now has an `acceptance-tests` errand:
+
+```
+bosh2 -d eats run-errand acceptance-tests
+```
