@@ -20,6 +20,8 @@ etcd/35effa1a-834f-42ab-bed2-f01890b05e00  running        z3  10.244.128.4
 etcd/54825aef-bd63-4ba2-84ff-3fc0586da45f  running        z2  10.244.128.3
 ```
 
+## SSL
+
 To deploy or upgrade the cluster to include SSL use `etcd-with-ssl.yml`:
 
 ```
@@ -39,7 +41,17 @@ etcd/35effa1a-834f-42ab-bed2-f01890b05e00    running        z3  10.244.128.4
 etcd/54825aef-bd63-4ba2-84ff-3fc0586da45f    running        z2  10.244.128.3
 ```
 
-### Run acceptance tests
+## 1 node
+
+For your enjoyment, there is an operator patch provided to deploy a single server etcd. Apply `1-node.ops.yml` to either of the `3-node*.yml` base manifests. Either:
+
+```
+bosh2 deploy manifests/bosh-lite/3-node-no-ssl.yml -o manifests/bosh-lite/1-node.ops.yml
+bosh2 deploy manifests/bosh-lite/3-node-with-ssl.yml -o manifests/bosh-lite/1-node.ops.yml
+```
+
+
+## Run acceptance tests
 
 Acceptance tests for this release are runnable as a separate deployment called `eats`:
 
