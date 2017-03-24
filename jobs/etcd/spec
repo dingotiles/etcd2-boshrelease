@@ -20,6 +20,13 @@ packages:
 provides:
 - name: etcd
   type: etcd_service
+  properties:
+  - etcd.advertise_urls_dns_suffix
+  - etcd.require_ssl
+  - etcd.port
+  - etcd.ca_cert
+  - etcd.client_cert
+  - etcd.client_key
 
 consumes:
 - name: etcd
